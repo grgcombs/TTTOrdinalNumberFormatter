@@ -114,8 +114,11 @@ static NSString * const kTTTOrdinalNumberFormatterDefaultOrdinalIndicator = @"."
 }
 
 - (NSString *)enOrdinalIndicatorStringFromNumber:(NSNumber *)number {
-    NSUInteger ulp = [number integerValue] % 10;
-    switch (ulp) {
+    if (number % 100 == 1) {
+        return @"th";
+    }
+    
+    switch ([number integerValue] % 10) {
         case 1:
             return @"st";
         case 2:
