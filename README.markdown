@@ -5,7 +5,7 @@ Core Foundation's NSNumberFormatter is great for [Cardinal numbers](http://en.wi
 
 A naïve implementation might be as simple as throwing the one's place in a switch statement and appending "-st", "-nd", etc. But what if you want to support French, which appends "-er", "-ère", and "-eme" in various contexts? How about Spanish? Japanese?
 
-`TTTOrdinalNumberFormatter` supports English, Spanish, French, Irish, Italian, Japanese, Dutch, Portuguese, and Mandarin Chinese. For other languages, you can use the standard default, or override it with your own. For languages whose ordinal indicator depends upon the grammatical properties of the predicate, `TTTOrdinalNumberFormatter` can format according to a specified gender and/or plurality.
+`TTTOrdinalNumberFormatter` supports English, Spanish, French, Irish, Italian, Japanese, Dutch, Portuguese, German, and Mandarin Chinese. For other languages, you can use the standard default, or override it with your own. For languages whose ordinal indicator depends upon the grammatical properties of the predicate, `TTTOrdinalNumberFormatter` can format according to a specified gender and/or plurality.
 
 ## Example Usage
 

@@ -30,6 +30,7 @@ static NSString * const kTTTOrdinalNumberFormatterDefaultOrdinalIndicator = @"."
 @property (nonatomic, assign) TTTOrdinalNumberFormatterPredicateGrammaticalNumber grammaticalNumber;
 
 - (NSString *)localizedOrdinalIndicatorStringFromNumber:(NSNumber *)number;
+- (NSString *)deOrdinalIndicatorStringFromNumber:(NSNumber *)number;
 - (NSString *)enOrdinalIndicatorStringFromNumber:(NSNumber *)number;
 - (NSString *)esOrdinalIndicatorStringFromNumber:(NSNumber *)number;
 - (NSString *)frOrdinalIndicatorStringFromNumber:(NSNumber *)number;
@@ -111,6 +112,10 @@ static NSString * const kTTTOrdinalNumberFormatterDefaultOrdinalIndicator = @"."
     } else {
         return kTTTOrdinalNumberFormatterDefaultOrdinalIndicator;
     }
+}
+
+- (NSString *)deOrdinalIndicatorStringFromNumber:(NSNumber *)number {
+	return @".";
 }
 
 - (NSString *)enOrdinalIndicatorStringFromNumber:(NSNumber *)number {
