@@ -119,21 +119,20 @@ static NSString * const kTTTOrdinalNumberFormatterDefaultOrdinalIndicator = @"."
 }
 
 - (NSString *)enOrdinalIndicatorStringFromNumber:(NSNumber *)number {
-    // If 11, 12, or 13
-    if (NSLocationInRange([number integerValue], NSMakeRange(11, 3)) {
-        return @"th";
+	NSInteger value = [number integerValue];
+	NSString *suffix = @"";
+	if (value > 0) {
+		switch(value % 10) {
+			case 1: suffix = @"st"; break;
+			case 2: suffix = @"nd"; break;
+			case 3: suffix = @"rd"; break;
+			default: suffix = @"th"; break;
+		}
+		if (value % 100 >= 11 && value % 100 <= 13)  {
+			suffix = @"th"; // Handle 11-13
     }
-    
-    switch ([number integerValue] % 10) {
-        case 1:
-            return @"st";
-        case 2:
-            return @"nd";
-        case 3:
-            return @"rd";
-        default:
-            return @"th";
     }
+	return suffix;
 }
 
 - (NSString *)esOrdinalIndicatorStringFromNumber:(NSNumber *)number {
