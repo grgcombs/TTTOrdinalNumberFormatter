@@ -1,7 +1,7 @@
 # TTTOrdinalNumberFormatter
 ## Your *1st* choice for formatting localized ordinal numbers
 
-Core Foundation's NSNumberFormatter is great for [Cardinal numbers](http://en.wikipedia.org/wiki/Cardinal_number) (17, 42, 69, etc.), but it doesn't have built-in support for [Ordinal numbers](http://en.wikipedia.org/wiki/Ordinal_number_(linguistics)) (1st, 2nd, 3rd, etc.)
+Foundation's NSNumberFormatter is great for [Cardinal numbers](http://en.wikipedia.org/wiki/Cardinal_number) (17, 42, 69, etc.), but it doesn't have built-in support for [Ordinal numbers](http://en.wikipedia.org/wiki/Ordinal_number_(linguistics)) (1st, 2nd, 3rd, etc.)
 
 A naïve implementation might be as simple as throwing the one's place in a switch statement and appending "-st", "-nd", etc. But what if you want to support French, which appends "-er", "-ère", and "-eme" in various contexts? How about Spanish? Japanese?
 
