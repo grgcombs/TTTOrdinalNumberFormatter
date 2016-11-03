@@ -25,10 +25,6 @@
 static NSString * const kTTTOrdinalNumberFormatterDefaultOrdinalIndicator = @".";
 
 @interface TTTOrdinalNumberFormatter ()
-@property (nonatomic, copy) NSString *ordinalIndicator;
-@property (nonatomic, assign) TTTOrdinalNumberFormatterPredicateGrammaticalGender grammaticalGender;
-@property (nonatomic, assign) TTTOrdinalNumberFormatterPredicateGrammaticalNumber grammaticalNumber;
-
 - (NSString *)localizedOrdinalIndicatorStringFromNumber:(NSNumber *)number;
 - (NSString *)deOrdinalIndicatorStringFromNumber:(NSNumber *)number;
 - (NSString *)enOrdinalIndicatorStringFromNumber:(NSNumber *)number;
@@ -47,17 +43,17 @@ static NSString * const kTTTOrdinalNumberFormatterDefaultOrdinalIndicator = @"."
 @synthesize grammaticalGender;
 @synthesize grammaticalNumber;
 
-- (id)init {
+- (instancetype)init {
     self = [super init];
     if (!self) {
         return nil;
     }
     
-    [self setNumberStyle:NSNumberFormatterNoStyle];
+    self.numberStyle = NSNumberFormatterNoStyle;
     [self setAllowsFloats:NO];
     [self setGeneratesDecimalNumbers:NO];
-    [self setRoundingMode:NSNumberFormatterRoundFloor];
-    [self setMinimum:[NSNumber numberWithInteger:0]];
+    self.roundingMode = NSNumberFormatterRoundFloor;
+    self.minimum = @0;
     [self setLenient:YES];
     
     return self;
@@ -77,11 +73,11 @@ static NSString * const kTTTOrdinalNumberFormatterDefaultOrdinalIndicator = @"."
     [self setPositivePrefix:nil];
     [self setPositiveSuffix:nil];
     
-    NSString *languageCode = [[self locale] objectForKey:NSLocaleLanguageCode];
+    NSString *languageCode = [self.locale objectForKey:NSLocaleLanguageCode];
     if ([languageCode isEqualToString:@"zh"]) {
-        [self setPositivePrefix:indicator];
+        self.positivePrefix = indicator;
     } else {
-        [self setPositiveSuffix:indicator];
+        self.positiveSuffix = indicator;
     }
     
     return [super stringFromNumber:number];
@@ -90,7 +86,7 @@ static NSString * const kTTTOrdinalNumberFormatterDefaultOrdinalIndicator = @"."
 #pragma mark -
 
 - (NSString *)localizedOrdinalIndicatorStringFromNumber:(NSNumber *)number {
-    NSString *languageCode = [[self locale] objectForKey:NSLocaleLanguageCode];
+    NSString *languageCode = [self.locale objectForKey:NSLocaleLanguageCode];
     if ([languageCode isEqualToString:@"en"]) {
         return [self enOrdinalIndicatorStringFromNumber:number];
     } else if ([languageCode isEqualToString:@"fr"]) {
@@ -119,7 +115,7 @@ static NSString * const kTTTOrdinalNumberFormatterDefaultOrdinalIndicator = @"."
 }
 
 - (NSString *)enOrdinalIndicatorStringFromNumber:(NSNumber *)number {
-	NSInteger value = [number integerValue];
+	NSInteger value = number.integerValue;
 	NSString *suffix = @"";
 	if (value > 0) {
 		switch(value % 10) {
@@ -147,7 +143,7 @@ static NSString * const kTTTOrdinalNumberFormatterDefaultOrdinalIndicator = @"."
 }
 
 - (NSString *)frOrdinalIndicatorStringFromNumber:(NSNumber *)number {
-    NSUInteger ulp = [number integerValue] % 10;
+    NSUInteger ulp = number.integerValue % 10;
     switch (ulp) {
         case 1:
             switch (self.grammaticalGender) {
