@@ -59,10 +59,6 @@ static NSString * const kTTTOrdinalNumberFormatterDefaultOrdinalIndicator = @"."
     return self;
 }
 
-- (void)dealloc {
-    [ordinalIndicator release];
-    [super dealloc];
-}
 
 - (NSString *)stringFromNumber:(NSNumber *)number {
     NSString *indicator = self.ordinalIndicator;
